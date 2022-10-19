@@ -7,9 +7,9 @@ let screenDivider = 8;
 let rayon = 10;
 let angle = 0;
 let angleY = 0;
-let v1 = Math.random();
-let v2 = Math.random();
-let sizeR = Math.random() * 200 + 10;
+let v1 = 1;
+let v2 = 0.3;
+let sizeR = 0.15 * 300 + 10;
 
 function start() {
     // constante locale
@@ -54,7 +54,7 @@ function animate() {
         mesOutils.arc(
         x + (i*50),
         y + (j*50),
-        Math.abs(10 * Math.sin(angle * (Math.PI / (sizeR+(j))))),
+        Math.abs(10 * Math.sin(angle * (Math.PI / (sizeR+j)))),
         0,
         2 * Math.PI,
         false
@@ -66,7 +66,7 @@ function animate() {
 
 
       // on fait augmenter l'angle
-      angle += v1;
+      angle += v2;
       if (angle > 360) {
         angle = 0;
       }
