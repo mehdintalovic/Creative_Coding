@@ -44,12 +44,12 @@ function animate() {
 
 
   function dessine() {
-    let x = monCanvas.width / 3;
-    let y = monCanvas.height / 3;
+    let x = monCanvas.width / 2.65;
+    let y = monCanvas.height / 4;
   
     for(let j = 0; j < 18; j++){
       for(let i = 0; i < 18; i++){
-        mesOutils.fillStyle = "rgb(250, 10, 120)";
+        mesOutils.fillStyle = "rgb(50,50,50)";
         mesOutils.beginPath();
         mesOutils.arc(
         x + (i*50),
