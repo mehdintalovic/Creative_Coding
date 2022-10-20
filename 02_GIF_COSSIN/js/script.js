@@ -47,6 +47,7 @@ function animate() {
     let x = monCanvas.width / 2.65;
     let y = monCanvas.height / 4;
   
+
     for(let j = 0; j < 18; j++){
       for(let i = 0; i < 18; i++){
         mesOutils.fillStyle = "rgb(50,50,50)";
@@ -54,7 +55,7 @@ function animate() {
         mesOutils.arc(
         x + (i*50),
         y + (j*50),
-        Math.abs(10 * Math.sin(angle * (Math.PI / (sizeR+j)))),
+        Math.abs(10 * Math.sin(angle * (Math.PI / (sizeR+i)))),
         0,
         2 * Math.PI,
         false
