@@ -25,7 +25,7 @@ class Eye {
     this.ctx.translate(pupilX, pupilY);
     this.ctx.fillStyle = "blue";
     this.ctx.beginPath();
-    this.ctx.arc(0, 0, 50, 0, Math.PI * 10);
+    this.ctx.arc(0, 0, 40, 0, Math.PI * 2);
     this.ctx.fill();
 
     this.ctx.closePath();
