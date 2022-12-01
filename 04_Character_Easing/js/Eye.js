@@ -3,11 +3,35 @@ class Eye {
     this.x = x;
     this.y = y;
     this.radius = radius;
+    this.originRadius = radius;
+    this.targetRadius = radius;
+    this.memoryRadius = radius;
     this.ctx = ctx;
+    this.speed = 0.001;
+    this.t = 0;
+  }
+
+  checkiftouched(x, y) {
+    return (
+      x > this.x &&
+      x < this.x + this.radius &&
+      y > this.y &&
+      y < this.y + this.radius
+    );
+  }
+
+  reset(y) {
+    this.t = 0;
+    this.originRadius = y;
+    this.radius = y;
   }
 
   draw(x, y) {
     this.ctx.save();
+    if (Math.abs(this.targetRadius - this.radius) > 0.1) this.calculateHeight();
+    else {
+      this.radius = this.targetRadius;
+    }
     this.ctx.translate(this.x, this.y);
     this.ctx.fillStyle = "white";
     this.ctx.beginPath();
@@ -30,5 +54,19 @@ class Eye {
 
     this.ctx.closePath();
     this.ctx.restore();
+  }
+
+  calculateHeight() {
+    this.t += this.speed;
+    this.ease = Easing.elasticOut(this.t);
+    this.radius =
+      this.originRadius + (this.targetRadius - this.originRadius) * this.ease;
+  }
+
+//map number from one range to another
+map(value, in_min, in_max, out_min, out_max) {
+    return (
+      ((value - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+    );
   }
 }

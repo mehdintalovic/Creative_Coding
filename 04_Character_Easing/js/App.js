@@ -73,11 +73,25 @@ class App {
         torso.checkiftouched(
           e.clientX * this.pixelRatio,
           e.clientY * this.pixelRatio
+          
         )
       ) {
         torso.reset(e.clientY);
       }
     });
+
+    this.eyes.forEach((eye) => {
+      if(
+        eye.checkiftouched(
+          e.clientX * this.pixelRatio,
+          e.clientY * this.pixelRatio
+          
+        )
+      ) {
+        eye.reset(e.clientY);
+      }
+    });
+
   }
 
 
