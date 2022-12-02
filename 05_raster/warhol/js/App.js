@@ -16,6 +16,8 @@ class App {
 
 
     this.grid = []
+
+    
     for(let j=0; j < 100; j++){
       for(let i=0; i < 100; i++){
         const circle = new Circle(i*20, j*20, 10, this.ctx);
