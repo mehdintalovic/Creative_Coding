@@ -10,7 +10,7 @@ class Torso {
          /*
       vitesse de d'incrémentation de t
     */
-    this.speed = 0.001;
+    this.speed = 0.01;
     /*
       t est un compteur qui va de 0 à 1
       qui definit la portion du chemin parcouru
@@ -20,11 +20,15 @@ class Torso {
 
     checkiftouched(x, y) {
         return (
-          x > this.x &&
-          x < this.x + this.radius &&
-          y > this.y &&
-          y < this.y + this.radius
+          x > this.x - this.radius / 2&&
+          x < this.x + this.radius / 2 &&
+          y > this.y - this.radius / 2 &&
+          y < this.y + this.radius / 2
         );
+      }
+
+      rotate(){
+
       }
 
       reset(y) {
@@ -64,7 +68,7 @@ class Torso {
 
     calculateHeight() {
         this.t += this.speed;
-        this.ease = Easing.elasticOut(this.t);
+        this.ease = Easing.circInOut(this.t);
         this.radius =
           this.originRadius + (this.targetRadius - this.originRadius) * this.ease;
       }

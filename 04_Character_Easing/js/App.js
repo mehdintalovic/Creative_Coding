@@ -35,20 +35,41 @@ class App {
 
     //EYES
     this.eyes = new Array(
-      new Eye(center.x - 220, center.y - 100, 100, this.ctx),
-      new Eye(center.x + 20, center.y - 100, 100, this.ctx)
+      new Eye(center.x - 220, center.y - 100, 150, this.ctx),
+      new Eye(center.x + 200, center.y - 100, 150, this.ctx)
     );
 
     this.torso = new Array(
       new Torso(center.x, center.y, 500, this.ctx)
+
     );
+
+    this.leg = new Array(
+      new Leg(center.x + 100, center.y, 150, 700, this.ctx),
+      new Leg(center.x - 250, center.y, 150, 700, this.ctx)
+    );
+
    
-    // document.addEventListener("click", this.click.bind(this));
+    document.addEventListener("click", this.click.bind(this));
     document.addEventListener("mousemove", this.move.bind(this));
 
     this.draw();
   }
 
+  click(e){
+    this.eyes.forEach((eye) => {
+      if(
+        eye.checkiftouched(
+          e.clientX * this.pixelRatio,
+          e.clientY * this.pixelRatio
+          
+        )
+      ) {
+        eye.reset(e.clientY);
+      }
+    });
+   
+  }
 
   draw() {
     this.ctx.fillStyle = "cyan";
@@ -56,16 +77,25 @@ class App {
     // this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     // this.fibonacciPoints.forEach((point) => point.draw());
     
+    this.leg.forEach((leg) => {
+      leg.draw();
+    })
+
     this.torso.forEach((torso) =>{
       torso.draw(0,0);
 
     })
 
+  
+
     this.eyes.forEach((eye) => {
       eye.draw(this.mouse.x, this.mouse.y);
     });
+
     requestAnimationFrame(this.draw.bind(this));
   }
+
+
 
   move(e) {
     this.torso.forEach((torso) => {
@@ -80,19 +110,24 @@ class App {
       }
     });
 
-    this.eyes.forEach((eye) => {
+    this.leg.forEach((leg) => {
       if(
-        eye.checkiftouched(
+        leg.checkiftouched(
           e.clientX * this.pixelRatio,
           e.clientY * this.pixelRatio
-          
         )
-      ) {
-        eye.reset(e.clientY);
+      
+      ){
+        leg.reset(e.clientY)
       }
     });
+  
+
+   
 
   }
+
+
 
 
   dist(x1, y1, x2, y2) {

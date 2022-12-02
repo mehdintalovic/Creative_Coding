@@ -7,7 +7,7 @@ class Eye {
     this.targetRadius = radius;
     this.memoryRadius = radius;
     this.ctx = ctx;
-    this.speed = 0.001;
+    this.speed = 0.02;
     this.t = 0;
   }
 
@@ -49,7 +49,7 @@ class Eye {
     this.ctx.translate(pupilX, pupilY);
     this.ctx.fillStyle = "blue";
     this.ctx.beginPath();
-    this.ctx.arc(0, 0, 40, 0, Math.PI * 2);
+    this.ctx.arc(0, 0, this.radius/2, 0, Math.PI * 2);
     this.ctx.fill();
 
     this.ctx.closePath();
@@ -58,7 +58,7 @@ class Eye {
 
   calculateHeight() {
     this.t += this.speed;
-    this.ease = Easing.elasticOut(this.t);
+    this.ease = Easing.circInOut(this.t);
     this.radius =
       this.originRadius + (this.targetRadius - this.originRadius) * this.ease;
   }
