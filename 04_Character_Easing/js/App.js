@@ -57,17 +57,32 @@ class App {
   }
 
   click(e){
-    this.eyes.forEach((eye) => {
+
+
+    this.leg.forEach((leg) => {
       if(
-        eye.checkiftouched(
+        leg.checkiftouched(
+          e.clientX * this.pixelRatio,
+          e.clientY * this.pixelRatio
+        )
+      
+      ){
+        leg.reset(e.clientY)
+      }
+    });
+
+    this.torso.forEach((torso) => {
+      if (
+        torso.checkiftouched(
           e.clientX * this.pixelRatio,
           e.clientY * this.pixelRatio
           
         )
       ) {
-        eye.reset(e.clientY);
+        torso.reset(e.clientY);
       }
     });
+
    
   }
 
@@ -98,34 +113,22 @@ class App {
 
 
   move(e) {
-    this.torso.forEach((torso) => {
-      if (
-        torso.checkiftouched(
+
+    this.eyes.forEach((eye) => {
+      if(
+        eye.checkiftouched(
           e.clientX * this.pixelRatio,
           e.clientY * this.pixelRatio
           
         )
       ) {
-        torso.reset(e.clientY);
+        eye.reset(e.clientY);
       }
     });
-
-    this.leg.forEach((leg) => {
-      if(
-        leg.checkiftouched(
-          e.clientX * this.pixelRatio,
-          e.clientY * this.pixelRatio
-        )
-      
-      ){
-        leg.reset(e.clientY)
-      }
-    });
-  
-
    
 
   }
+
 
   dist(x1, y1, x2, y2) {
     return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));

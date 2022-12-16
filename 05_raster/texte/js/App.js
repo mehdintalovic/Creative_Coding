@@ -9,7 +9,8 @@ class App {
     document.body.appendChild(this.canvas);
     this.ctx = this.canvas.getContext("2d");
     this.img_file = "asset/zidane.jpeg";
-
+    this.phrase = "OH NON PAS CA ! PAS CA, ZINEDINE...PAS MAINTENANT ! PAS APRES TOUT CE QUE TU AS FAIT !"
+    this.phrase_array = this.phrase.split("")
     this.setup();
   }
 
@@ -22,11 +23,20 @@ class App {
       x: (window.innerWidth / 2) * this.pixelRatio - grid_width / 2,
       y: (window.innerHeight / 2) * this.pixelRatio - grid_width / 2,
     };
+
+    let angle = 0;
     for (let j = 0; j < 100; j++) {
       for (let i = 0; i < 100; i++) {
-        this.grid.push(
-          new Circle(top_left.x + i * 20, top_left.y + j * 20, 10, this.ctx)
-        );
+       
+        const circle = new Circle(top_left.x + i * 20, top_left.y + j * 20, 10, this.ctx)
+        const letter = this.phrase_array.shift() 
+        circle.letter = letter;
+        this.phrase_array.push(letter)
+
+        circle.angle = angle;
+        angle += 0.05
+
+       this.grid.push(circle);
       }
     }
     // load image
@@ -63,7 +73,6 @@ class App {
     this.draw();
   }
 
-
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -71,6 +80,10 @@ class App {
     this.grid.forEach((circle, index) => {
       const color = this.rgb[index];
       circle.color = `rgb(${color.r}, ${color.g}, ${color.b})`;
+      circle.color_decomposed = color;
+      //const letter = this.phrase_array.shift() 
+      //circle.letter = letter;
+      //this.phrase_array.push(letter)
       circle.draw();
     });
 

@@ -20,15 +20,11 @@ class Torso {
 
     checkiftouched(x, y) {
         return (
-          x > this.x - this.radius / 2&&
-          x < this.x + this.radius / 2 &&
-          y > this.y - this.radius / 2 &&
-          y < this.y + this.radius / 2
+          x > this.x - this.radius &&
+          x < this.x + this.radius  &&
+          y > this.y - this.radius  &&
+          y < this.y + this.radius 
         );
-      }
-
-      rotate(){
-
       }
 
       reset(y) {
@@ -70,7 +66,7 @@ class Torso {
         this.t += this.speed;
         this.ease = Easing.circInOut(this.t);
         this.radius =
-          this.originRadius + (this.targetRadius - this.originRadius) * this.ease;
+          this.originRadius + (this.targetRadius * 4 - this.originRadius) * this.ease;
       }
 
     //map number from one range to another
