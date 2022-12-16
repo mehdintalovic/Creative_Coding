@@ -8,9 +8,11 @@ class App {
     this.canvas.style.height = window.innerHeight;
     document.body.appendChild(this.canvas);
     this.ctx = this.canvas.getContext("2d");
-    this.phrase = "hell"
+    this.phrase = 'hello';
+    this.key = document.getElementById('key')
     this.phrase_array = this.phrase.split("")
     this.setup();
+   
   }
 
   initWebcam() {
@@ -48,6 +50,11 @@ class App {
     // create grid
     this.grid = [];
     this.scale = 4;
+
+    document.onkeydown = function(e){
+      this.phrase_array.push(e.key);
+
+    }
     
     //quel espace entre chaque cercle si on en veut 50 sur la largeur et la hauteur
     this.stepX = Math.floor(640 / 50);
@@ -84,8 +91,33 @@ class App {
 
       }
     }
+
+
+    document.addEventListener("click", this.click.bind(this));
+   
+  
+    
+
     this.draw();
   }
+
+
+  click(e){
+
+
+    this.grid.forEach((circle) => {
+      if(
+        circle.checkiftouched(
+          e.clientX * this.pixelRatio ,
+          e.clientY * this.pixelRatio 
+        )
+      
+      ){
+        circle.reset(e.clientY)
+      }
+    });
+  }
+
 
   detectPixels() {
     console.log("detectPixels");
