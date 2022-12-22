@@ -80,7 +80,7 @@ class App {
 
         const circle = new Circle(this.offsetX + i * this.scale,
               this.offsetY + j * this.scale,
-              40,
+              60,
               this.ctx);
 
         const letter = this.phrase_array.shift() 
@@ -135,10 +135,9 @@ class App {
       for (let i = 0; i < 640; i += this.stepX) {
         let index = (j * 640 + i) * 4;
         this.rgb.push({
-          r: this.pixels[index],
-          g: this.pixels[index + 1],
-          b: this.pixels[index + 2],
-          a: this.pixels[index + 3],
+          r: this.pixels[index + 1],
+          g: this.pixels[index + 2],
+          b: this.pixels[index + 3]
         });
       }
     }
