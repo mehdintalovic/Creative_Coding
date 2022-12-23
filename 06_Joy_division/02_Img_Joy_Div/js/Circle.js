@@ -12,16 +12,7 @@ class Circle {
   draw() {
     const luminosity_percentage = this.detectLuminance();
     this.y = this.originY + luminosity_percentage * 50;
-    // if (luminosity_percentage > 0.19) {
-    // this.ctx.fillStyle = this.replacement_color;
-    // this.ctx.save();
-    // this.ctx.translate(this.x, this.y);
-    // this.ctx.beginPath();
-    // this.ctx.arc(0, 0, this.radius, 0, 2 * Math.PI);
-    // this.ctx.fill();
-    // this.ctx.closePath();
-    // this.ctx.restore();
-    // }
+ 
   }
 
   detectLuminance() {

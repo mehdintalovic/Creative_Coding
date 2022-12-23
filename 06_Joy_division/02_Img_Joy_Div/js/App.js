@@ -18,9 +18,9 @@ class App {
     this.totalLines = 100;
     this.subdivisions = 100;
 
-    // create grid
+    
     this.points = [];
-    // pour centrer la grille
+    
     const grid_width = 20 * 100;
     const top_left = {
       x: (window.innerWidth / 2) * this.pixelRatio - grid_width / 2,
@@ -89,8 +89,7 @@ class App {
         if (j == 0) {
           this.ctx.moveTo(this.points[index].x, this.points[index].y);
         }
-        // replace that line with a quadratic curve
-        // this.ctx.lineTo(this.points[index + 1].x, this.points[index + 1].y);
+   
         const cx = (this.points[index].x + this.points[index + 1].x) / 2;
         const cy = (this.points[index].y + this.points[index + 1].y) / 2;
         this.ctx.quadraticCurveTo(
@@ -100,10 +99,7 @@ class App {
           cy
         );
       }
-      // this.ctx.save();
-      // this.ctx.globalCompositeOperation = "destination-out";
-      // this.ctx.fill();
-      // this.ctx.restore();
+ 
       this.ctx.stroke();
       this.ctx.closePath();
     }
